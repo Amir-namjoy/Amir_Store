@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "Amir_Store.Persistence": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:1280;http://localhost:1282"
+    }
+  }
+}
