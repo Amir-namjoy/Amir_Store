@@ -14,5 +14,6 @@ namespace Amir_Store.Domain.Entities.Users
         public string Email { get; set; }
         public string Password { get; set; }
         public ICollection<UserInRole> UserInRoles { get; set; }
+        
     }
 }

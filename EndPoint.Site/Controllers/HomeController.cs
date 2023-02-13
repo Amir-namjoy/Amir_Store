@@ -23,10 +23,6 @@ namespace EndPoint.Site.Controllers
             return View();
         }
 
-        public IActionResult mahsa()
-        {
-            return View("mahsa");
-        }
         public IActionResult Privacy()
         {
             return View();
