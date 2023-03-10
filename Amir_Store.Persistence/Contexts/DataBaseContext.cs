@@ -1,4 +1,5 @@
-﻿using Amir_Store.Domain.Entities.Users;
+﻿using Amir_Store.Application.Interfaces.Contexts;
+using Amir_Store.Domain.Entities.Users;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Amir_Store.Persistence.Contexts
 {
-    public class DataBaseContext : DbContext
+    public class DataBaseContext : DbContext, IDataBaseContext
     {
         public DataBaseContext(DbContextOptions options) : base(options)
         {
