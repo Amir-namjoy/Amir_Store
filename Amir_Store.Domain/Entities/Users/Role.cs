@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using Amir_Store.Domain.Entities.Commons;
+using System.Collections.Generic;
 
 namespace Amir_Store.Domain.Entities.Users
 {
-    public class Role
+    public class Role : BaseEntityNotId
     {
         public long Id { get; set; }
         public string Name { get; set; }

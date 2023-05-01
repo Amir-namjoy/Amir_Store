@@ -67,28 +67,44 @@
                             <div class="header-account text-left">
                                 <div class="d-block">
                                     <div class="account-box">
-                                        <div class="nav-account d-block pl">
-                                            <span class="icon-account">
-                                                <img src="~/SiteTemplate/assets/images/man.png" class="avator">
-                                            </span>
-                                            <span class="title-account">حساب کاربری</span>
-                                            <div class="dropdown-menu">
-                                                <ul class="account-uls mb-0">
-                                                    <li class="account-item">
-                                                        <a href="#" class="account-link">پنل کاربری</a>
-                                                    </li>
-                                                    <li class="account-item">
-                                                        <a href="#" class="account-link">سفارشات من</a>
-                                                    </li>
-                                                    <li class="account-item">
-                                                        <a href="#" class="account-link">تنظیمات</a>
-                                                    </li>
-                                                    <li class="account-item">
-                                                        <a href="#" class="account-link">خروج</a>
-                                                    </li>
-                                                </ul>
+                                        @if (User.Identity.IsAuthenticated)
+                                        {
+                                            <div class="nav-account d-block pl">
+                                                <span class="icon-account">
+                                                    <img src="~/SiteTemplate/assets/images/man.png" class="avator">
+                                                </span>
+                                                <span class="title-account">@User.Identity.Name</span>
+                                                <div class="dropdown-menu">
+                                                    <ul class="account-uls mb-0">
+                                                        <li class="account-item">
+                                                            <a href="#" class="account-link">پنل کاربری</a>
+                                                        </li>
+                                                        <li class="account-item">
+                                                            <a href="#" class="account-link">سفارشات من</a>
+                                                        </li>
+                                                        <li class="account-item">
+                                                            <a href="#" class="account-link">تنظیمات</a>
+                                                        </li>
+                                                        <li class="account-item">
+                                                            <a href="~/authentication/SignOut" class="account-link">خروج</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
                                             </div>
-                                        </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="nav-account d-block pl">
+                                                <a href="~/authentication/signup">
+                                                    <span class="title-account">ثبت نام</span>
+                                                </a>
+
+                                                <a href="~/authentication/signin">
+                                                    <span class="title-account">ورود</span>
+                                                </a>
+                                            </div>
+                                        }
+
                                     </div>
                                 </div>
                             </div>

@@ -1,4 +1,5 @@
-﻿using Amir_Store.Domain.Entities.Users;
+﻿using Amir_Store.Domain.Entities.Products;
+using Amir_Store.Domain.Entities.Users;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,10 @@ namespace Amir_Store.Application.Interfaces.Contexts
          DbSet<User> Users { get; set; }
          DbSet<Role> Roles { get; set; }
          DbSet<UserInRole> UserInRoles { get; set; }
+         DbSet<Category> Categories { get; set; }
+         DbSet<Product> Products { get; set; }
+         DbSet<ProductImage> ProductImages { get; set; }
+         DbSet<ProductFeature> ProductFeatures { get; set; }
 
         int SaveChanges();
         int SaveChanges(bool acceptAllChangesOnSuccess);

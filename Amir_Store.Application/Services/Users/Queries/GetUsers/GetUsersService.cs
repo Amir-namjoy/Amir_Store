@@ -13,21 +13,28 @@ namespace Amir_Store.Application.Services.Users.Queries.GetUsers
             _contex = contex;
         }
 
-        public List<GetUsersDTO> Execute(RequestGetUsetDto request)
+        public ResultGetUserDto Execute(RequestGetUsetDto request)
         {
             var users = _contex.Users.AsQueryable();
             if (!string.IsNullOrWhiteSpace(request.SearchKey))
             {
-                users = users.Where(p => p.FullName.Contains(request.SearchKey) && p.Email.Contains(request.SearchKey));
+                users = users.Where(p => p.FullName.Contains(request.SearchKey) || p.Email.Contains(request.SearchKey));
             }
             int rowsCount = 0;
-            return users.ToPaged(request.Page, 20, out rowsCount).Select(p => new GetUsersDTO
+            var usersList = users.ToPaged(request.Page, 20, out rowsCount).Select(p => new GetUsersDTO
             {
                 Email = p.Email,
                 FullName = p.FullName,
                 Id = p.Id,
+                IsActive = p.IsActive
 
             }).ToList();
+
+            return new ResultGetUserDto
+            {
+                Rows = rowsCount,
+                Users = usersList,
+            };
         }
     }
 

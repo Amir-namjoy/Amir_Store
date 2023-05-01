@@ -7,7 +7,7 @@ namespace Amir_Store.Application.Services.Users.Queries.GetUsers
 {
     public interface IGetUsersService
     {
-        List<GetUsersDTO> Execute(RequestGetUsetDto request);
+        ResultGetUserDto Execute(RequestGetUsetDto request);
     }
 
 }
