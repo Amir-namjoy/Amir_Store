@@ -1,5 +1,6 @@
 ﻿using Amir_Store.Application.Interfaces.Contexts;
 using Amir_Store.Common.Roles;
+using Amir_Store.Domain.Entities.HomePage;
 using Amir_Store.Domain.Entities.Products;
 using Amir_Store.Domain.Entities.Users;
 using Microsoft.EntityFrameworkCore;
@@ -27,6 +28,8 @@ namespace Amir_Store.Persistence.Contexts
         public DbSet<ProductImage> ProductImages { get; set; }
         public DbSet<ProductFeature> ProductFeatures { get; set; }
 
+        public DbSet<Slider> Sliders { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Roles  افزودن مقادیر پیش فرض به جدول
@@ -52,6 +55,7 @@ namespace Amir_Store.Persistence.Contexts
             modelBuilder.Entity<Role>().HasQueryFilter(p => !p.IsRemoved);
             modelBuilder.Entity<UserInRole>().HasQueryFilter(p => !p.IsRemoved);
             modelBuilder.Entity<Category>().HasQueryFilter(p => !p.IsRemoved);
+            modelBuilder.Entity<Slider>().HasQueryFilter(p => !p.IsRemoved);
         }
     }
 }

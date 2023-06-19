@@ -19,6 +19,39 @@ namespace Amir_Store.Persistence.Migrations
                 .HasAnnotation("ProductVersion", "5.0.17")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("Amir_Store.Domain.Entities.HomePage.Slider", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Click")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("InsertTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsRemoved")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Link")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("RemoveTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Src")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdateTime")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Sliders");
+                });
+
             modelBuilder.Entity("Amir_Store.Domain.Entities.Products.Category", b =>
                 {
                     b.Property<long>("Id")
@@ -51,6 +84,123 @@ namespace Amir_Store.Persistence.Migrations
                     b.ToTable("Categories");
                 });
 
+            modelBuilder.Entity("Amir_Store.Domain.Entities.Products.Product", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Brand")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("CategoryId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Displayed")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("InsertTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Inventory")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsRemoved")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Price")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("RemoveTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("UpdateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ViewCount")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("Amir_Store.Domain.Entities.Products.ProductFeature", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("DisplayName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("InsertTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsRemoved")
+                        .HasColumnType("bit");
+
+                    b.Property<long>("ProductId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("RemoveTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("UpdateTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Value")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ProductFeatures");
+                });
+
+            modelBuilder.Entity("Amir_Store.Domain.Entities.Products.ProductImage", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("InsertTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsRemoved")
+                        .HasColumnType("bit");
+
+                    b.Property<long>("ProductId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("RemoveTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Src")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdateTime")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ProductImages");
+                });
+
             modelBuilder.Entity("Amir_Store.Domain.Entities.Users.Role", b =>
                 {
                     b.Property<long>("Id")
@@ -81,21 +231,21 @@ namespace Amir_Store.Persistence.Migrations
                         new
                         {
                             Id = 1L,
-                            InsertTime = new DateTime(2023, 4, 13, 9, 7, 48, 598, DateTimeKind.Local).AddTicks(82),
+                            InsertTime = new DateTime(2023, 6, 17, 11, 36, 52, 178, DateTimeKind.Local).AddTicks(2917),
                             IsRemoved = false,
                             Name = "Admin"
                         },
                         new
                         {
                             Id = 2L,
-                            InsertTime = new DateTime(2023, 4, 13, 9, 7, 48, 599, DateTimeKind.Local).AddTicks(4934),
+                            InsertTime = new DateTime(2023, 6, 17, 11, 36, 52, 179, DateTimeKind.Local).AddTicks(6240),
                             IsRemoved = false,
                             Name = "Operator"
                         },
                         new
                         {
                             Id = 3L,
-                            InsertTime = new DateTime(2023, 4, 13, 9, 7, 48, 599, DateTimeKind.Local).AddTicks(5002),
+                            InsertTime = new DateTime(2023, 6, 17, 11, 36, 52, 179, DateTimeKind.Local).AddTicks(6326),
                             IsRemoved = false,
                             Name = "Customer"
                         });
@@ -184,6 +334,39 @@ namespace Amir_Store.Persistence.Migrations
                     b.Navigation("ParentCategory");
                 });
 
+            modelBuilder.Entity("Amir_Store.Domain.Entities.Products.Product", b =>
+                {
+                    b.HasOne("Amir_Store.Domain.Entities.Products.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("Amir_Store.Domain.Entities.Products.ProductFeature", b =>
+                {
+                    b.HasOne("Amir_Store.Domain.Entities.Products.Product", "Product")
+                        .WithMany("ProductFeatures")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("Amir_Store.Domain.Entities.Products.ProductImage", b =>
+                {
+                    b.HasOne("Amir_Store.Domain.Entities.Products.Product", "Product")
+                        .WithMany("ProductImages")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+                });
+
             modelBuilder.Entity("Amir_Store.Domain.Entities.Users.UserInRole", b =>
                 {
                     b.HasOne("Amir_Store.Domain.Entities.Users.Role", "Role")
@@ -206,6 +389,13 @@ namespace Amir_Store.Persistence.Migrations
             modelBuilder.Entity("Amir_Store.Domain.Entities.Products.Category", b =>
                 {
                     b.Navigation("SubCategories");
+                });
+
+            modelBuilder.Entity("Amir_Store.Domain.Entities.Products.Product", b =>
+                {
+                    b.Navigation("ProductFeatures");
+
+                    b.Navigation("ProductImages");
                 });
 
             modelBuilder.Entity("Amir_Store.Domain.Entities.Users.Role", b =>

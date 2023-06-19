@@ -4,12 +4,16 @@ using Amir_Store.Application.Services.Products.Commands.AddNewCategory;
 using Amir_Store.Application.Services.Products.Commands.AddNewProduct;
 using Amir_Store.Application.Services.Products.Queries.GetAllCategories;
 using Amir_Store.Application.Services.Products.Queries.GetCategories;
+using Amir_Store.Application.Services.Products.Queries.GetProductDetailForAdmin;
+using Amir_Store.Application.Services.Products.Queries.GetProductsForAdmin;
+using Amir_Store.Application.Services.Products.Queries.GetProductForSite;
 using Microsoft.AspNetCore.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Amir_Store.Application.Services.Products.Queries.GetProductDetailForSite;
 
 namespace Amir_Store.Application.Services.Products.FacadePatterns
 {
@@ -23,8 +27,8 @@ namespace Amir_Store.Application.Services.Products.FacadePatterns
             _environment = environment;
         }
 
-        private AddNewCategoryService _addNewCategoryService;
-        public AddNewCategoryService AddNewCategoryService
+        private IAddNewCategoryService _addNewCategoryService;
+        public IAddNewCategoryService AddNewCategoryService
         { 
             get
             {
@@ -57,6 +61,42 @@ namespace Amir_Store.Application.Services.Products.FacadePatterns
             get 
             { 
                 return _getAllCategoriesService ??= new GetAllCategoriesService(_context);
+            }
+        }
+
+        private IGetProductForAdminServices _getProductForAdminServices;
+        public IGetProductForAdminServices GetProductForAdminServices
+        {
+            get
+            {
+                return _getProductForAdminServices ??= new GetProductForAdminServices(_context);
+            }
+        }
+
+        private IGetProductDetailForAdminService _getProductDetailForAdminService;
+        public IGetProductDetailForAdminService GetProductDetailForAdminService
+        {
+            get
+            {
+                return _getProductDetailForAdminService ??= new GetProductDetailForAdminService(_context);
+            }
+        }
+
+        private IGetProductForSiteService _getProductForSiteService;
+        public IGetProductForSiteService GetProductForSiteService
+        {
+            get
+            {
+                return _getProductForSiteService ??= new GetProductForSiteService(_context);
+            }
+        }
+        
+        private IGetProductDetailForSiteService _getProductDetailForSiteService;
+        public IGetProductDetailForSiteService GetProductDetailForSiteService
+        {
+            get
+            {
+                return _getProductDetailForSiteService ??= new GetProductDetailForSiteService(_context);
             }
         }
     }

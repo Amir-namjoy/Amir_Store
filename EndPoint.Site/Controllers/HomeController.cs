@@ -1,4 +1,6 @@
-﻿using EndPoint.Site.Models;
+﻿using Amir_Store.Application.Services.Common.Queries.GetSliders;
+using EndPoint.Site.Models;
+using EndPoint.Site.Models.HomePage;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -12,15 +14,21 @@ namespace EndPoint.Site.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IGetSliderService _getSliderService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IGetSliderService getSliderService)
         {
             _logger = logger;
+            _getSliderService = getSliderService;
         }
 
         public IActionResult Index()
         {
-            return View();
+            HomePageViewModel homePageviewModel = new HomePageViewModel()
+            {
+                Sliders = _getSliderService.Execute().Data,
+            };
+            return View(homePageviewModel);
         }
 
         public IActionResult Privacy()

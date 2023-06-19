@@ -1,28 +1,21 @@
 using Amir_Store.Application.Interfaces.Contexts;
 using Amir_Store.Application.Interfaces.FacadePatterns;
+using Amir_Store.Application.Services.Common.Queries.GetCategory;
+using Amir_Store.Application.Services.Common.Queries.GetMenuItem;
+using Amir_Store.Application.Services.Common.Queries.GetSliders;
+using Amir_Store.Application.Services.HomePage.AddNewSlider;
 using Amir_Store.Application.Services.Products.FacadePatterns;
-using Amir_Store.Application.Services.Users.Commands.EditUser;
-using Amir_Store.Application.Services.Users.Commands.RegisterUser;
-using Amir_Store.Application.Services.Users.Commands.RemoveUser;
-using Amir_Store.Application.Services.Users.Commands.UserLogin;
-using Amir_Store.Application.Services.Users.Commands.UserStatusChange;
 using Amir_Store.Application.Services.Users.FacadePatterns;
-using Amir_Store.Application.Services.Users.Queries.GetRoles;
-using Amir_Store.Application.Services.Users.Queries.GetUsers;
 using Amir_Store.Persistence.Contexts;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace EndPoint.Site
 {
@@ -50,7 +43,7 @@ namespace EndPoint.Site
             });
 
             services.AddScoped<IDataBaseContext, DataBaseContext>();
-            
+
             //services.AddScoped<IGetUsersService, GetUsersService>();
             //services.AddScoped<IGetRolesService, GetRolesService>();
             //services.AddScoped<IRegisterUserService, RegisterUserService>();
@@ -58,11 +51,17 @@ namespace EndPoint.Site
             //services.AddScoped<IRemoveUserService, RemoveUserService>();
             //services.AddScoped<IUserStatusChangeService, UserStatusChangeService>();
             //services.AddScoped<IEditUserService, EditUserServices>();
-            
+
             //Facade Injection
             services.AddScoped<IUserFacade, UserFacade>();
             services.AddScoped<IProductFacade, ProductFacade>();
 
+            //---------------------------------------------------------
+            services.AddScoped<IGetMenuItemService, GetMenuItemService>();
+            services.AddScoped<IGetCategoryService, GetCategoryService>();
+            services.AddScoped<IAddNewSliderService, AddNewSliderService>();
+            services.AddScoped<IGetSliderService, GetSliderService>();
+            
             string ConnectionString = @"Data Source=.; Initial Catalog=Amir_StoreDB; Integrated Security=True;";
             services.AddEntityFrameworkSqlServer().AddDbContext<DataBaseContext>(option => option.UseSqlServer(ConnectionString));
             //services.AddEntityFrameworkSqlServer().AddDbContext<DataBaseContext>(option => option.UseSqlServer(Configuration.GetConnectionString());

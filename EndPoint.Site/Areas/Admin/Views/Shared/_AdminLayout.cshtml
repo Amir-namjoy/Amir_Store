@@ -51,6 +51,8 @@
                             <a href="#"><i class="icon-home"></i><span data-i18n="" class="menu-title">داشبورد</span><span class="tag badge badge-pill badge-danger mt-1">2</span></a>
                         </li>
 
+
+
                         <li class="has-sub nav-item">
                             <a href="#"><i class="icon-users"></i><span data-i18n="" class="menu-title">مدیریت کاربران</span></a>
                             <ul class="menu-content">
@@ -71,6 +73,17 @@
                                 </li>
                                 <li>
                                     <a href="~/admin/categories/addnewcategory" class="menu-item">افزودن دسته بندی جدید *</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="has-sub nav-item">
+                            <a href="#"><i class="icon-crop"></i><span data-i18n="" class="menu-title"> محصولات </span></a>
+                            <ul class="menu-content">
+                                <li>
+                                    <a href="~/admin/products/" class="menu-item">لیست محصولات</a>
+                                </li>
+                                <li>
+                                    <a href="~/admin/products/addnewproduct" class="menu-item">افزودن محصول جدید *</a>
                                 </li>
                             </ul>
                         </li>
@@ -418,8 +431,7 @@
     <!-- END CONVEX JS-->
     <!-- BEGIN PAGE LEVEL JS-->
     <!-- END PAGE LEVEL JS-->
-
-    @RenderSection("Scripts", false)
+    @RenderSection("Scripts",false)
 
     @RenderSection("Modals",false)
 </body>
