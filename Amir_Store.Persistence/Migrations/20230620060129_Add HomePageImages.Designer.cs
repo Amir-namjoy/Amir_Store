@@ -4,14 +4,16 @@ using Amir_Store.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Amir_Store.Persistence.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    partial class DataBaseContextModelSnapshot : ModelSnapshot
+    [Migration("20230620060129_Add HomePageImages")]
+    partial class AddHomePageImages
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -19,82 +21,7 @@ namespace Amir_Store.Persistence.Migrations
                 .HasAnnotation("ProductVersion", "5.0.17")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Amir_Store.Domain.Entities.Carts.Cart", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<Guid>("BrowserId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<bool>("Finished")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime>("InsertTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsRemoved")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("RemoveTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("UpdateTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long?>("UserId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Carts");
-                });
-
-            modelBuilder.Entity("Amir_Store.Domain.Entities.Carts.CartItem", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<long>("CartId")
-                        .HasColumnType("bigint");
-
-                    b.Property<int>("Count")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("InsertTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsRemoved")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("Price")
-                        .HasColumnType("int");
-
-                    b.Property<long>("ProductId")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("RemoveTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("UpdateTime")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CartId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("CartItems");
-                });
-
-            modelBuilder.Entity("Amir_Store.Domain.Entities.HomePage.HomePageImage", b =>
+            modelBuilder.Entity("Amir_Store.Domain.Entities.HomePage.HomePageImages", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -339,21 +266,21 @@ namespace Amir_Store.Persistence.Migrations
                         new
                         {
                             Id = 1L,
-                            InsertTime = new DateTime(2023, 6, 30, 19, 5, 35, 847, DateTimeKind.Local).AddTicks(1663),
+                            InsertTime = new DateTime(2023, 6, 20, 9, 31, 29, 342, DateTimeKind.Local).AddTicks(1561),
                             IsRemoved = false,
                             Name = "Admin"
                         },
                         new
                         {
                             Id = 2L,
-                            InsertTime = new DateTime(2023, 6, 30, 19, 5, 35, 848, DateTimeKind.Local).AddTicks(8997),
+                            InsertTime = new DateTime(2023, 6, 20, 9, 31, 29, 343, DateTimeKind.Local).AddTicks(7038),
                             IsRemoved = false,
                             Name = "Operator"
                         },
                         new
                         {
                             Id = 3L,
-                            InsertTime = new DateTime(2023, 6, 30, 19, 5, 35, 848, DateTimeKind.Local).AddTicks(9064),
+                            InsertTime = new DateTime(2023, 6, 20, 9, 31, 29, 343, DateTimeKind.Local).AddTicks(7104),
                             IsRemoved = false,
                             Name = "Customer"
                         });
@@ -433,34 +360,6 @@ namespace Amir_Store.Persistence.Migrations
                     b.ToTable("UserInRoles");
                 });
 
-            modelBuilder.Entity("Amir_Store.Domain.Entities.Carts.Cart", b =>
-                {
-                    b.HasOne("Amir_Store.Domain.Entities.Users.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Amir_Store.Domain.Entities.Carts.CartItem", b =>
-                {
-                    b.HasOne("Amir_Store.Domain.Entities.Carts.Cart", "Cart")
-                        .WithMany("CartItems")
-                        .HasForeignKey("CartId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Amir_Store.Domain.Entities.Products.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Cart");
-
-                    b.Navigation("Product");
-                });
-
             modelBuilder.Entity("Amir_Store.Domain.Entities.Products.Category", b =>
                 {
                     b.HasOne("Amir_Store.Domain.Entities.Products.Category", "ParentCategory")
@@ -520,11 +419,6 @@ namespace Amir_Store.Persistence.Migrations
                     b.Navigation("Role");
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Amir_Store.Domain.Entities.Carts.Cart", b =>
-                {
-                    b.Navigation("CartItems");
                 });
 
             modelBuilder.Entity("Amir_Store.Domain.Entities.Products.Category", b =>

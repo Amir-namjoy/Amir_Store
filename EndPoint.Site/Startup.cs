@@ -1,10 +1,15 @@
 using Amir_Store.Application.Interfaces.Contexts;
 using Amir_Store.Application.Interfaces.FacadePatterns;
+using Amir_Store.Application.Services.Carts;
 using Amir_Store.Application.Services.Common.Queries.GetCategory;
+using Amir_Store.Application.Services.Common.Queries.GetHomePageImages;
 using Amir_Store.Application.Services.Common.Queries.GetMenuItem;
 using Amir_Store.Application.Services.Common.Queries.GetSliders;
+using Amir_Store.Application.Services.HomePage.AddHomePageImages;
 using Amir_Store.Application.Services.HomePage.AddNewSlider;
 using Amir_Store.Application.Services.Products.FacadePatterns;
+using Amir_Store.Application.Services.Users.Commands.RegisterUser;
+using Amir_Store.Application.Services.Users.Commands.UserLogin;
 using Amir_Store.Application.Services.Users.FacadePatterns;
 using Amir_Store.Persistence.Contexts;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -46,8 +51,8 @@ namespace EndPoint.Site
 
             //services.AddScoped<IGetUsersService, GetUsersService>();
             //services.AddScoped<IGetRolesService, GetRolesService>();
-            //services.AddScoped<IRegisterUserService, RegisterUserService>();
-            //services.AddScoped<IUserLoginService, UserLoginService>();
+            services.AddScoped<IRegisterUserService, RegisterUserService>();
+            services.AddScoped<IUserLoginService, UserLoginService>();
             //services.AddScoped<IRemoveUserService, RemoveUserService>();
             //services.AddScoped<IUserStatusChangeService, UserStatusChangeService>();
             //services.AddScoped<IEditUserService, EditUserServices>();
@@ -61,7 +66,10 @@ namespace EndPoint.Site
             services.AddScoped<IGetCategoryService, GetCategoryService>();
             services.AddScoped<IAddNewSliderService, AddNewSliderService>();
             services.AddScoped<IGetSliderService, GetSliderService>();
-            
+            services.AddScoped<IAddHomePageImagesService, AddHomePageImagesService>();
+            services.AddScoped<IGetHomePageImagesService, GetHomePageImagesService>();
+            services.AddScoped<ICartServices, CartService>();
+
             string ConnectionString = @"Data Source=.; Initial Catalog=Amir_StoreDB; Integrated Security=True;";
             services.AddEntityFrameworkSqlServer().AddDbContext<DataBaseContext>(option => option.UseSqlServer(ConnectionString));
             //services.AddEntityFrameworkSqlServer().AddDbContext<DataBaseContext>(option => option.UseSqlServer(Configuration.GetConnectionString());

@@ -1,5 +1,6 @@
 ﻿using Amir_Store.Application.Interfaces.Contexts;
 using Amir_Store.Common.Roles;
+using Amir_Store.Domain.Entities.Carts;
 using Amir_Store.Domain.Entities.HomePage;
 using Amir_Store.Domain.Entities.Products;
 using Amir_Store.Domain.Entities.Users;
@@ -29,6 +30,9 @@ namespace Amir_Store.Persistence.Contexts
         public DbSet<ProductFeature> ProductFeatures { get; set; }
 
         public DbSet<Slider> Sliders { get; set; }
+        public DbSet<HomePageImage> HomePageImages { get; set; }
+        public DbSet<Cart> Carts { get; set; }
+        public DbSet<CartItem> CartItems { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -56,6 +60,9 @@ namespace Amir_Store.Persistence.Contexts
             modelBuilder.Entity<UserInRole>().HasQueryFilter(p => !p.IsRemoved);
             modelBuilder.Entity<Category>().HasQueryFilter(p => !p.IsRemoved);
             modelBuilder.Entity<Slider>().HasQueryFilter(p => !p.IsRemoved);
+            modelBuilder.Entity<HomePageImage>().HasQueryFilter(p => !p.IsRemoved);
+            modelBuilder.Entity<Cart>().HasQueryFilter(p => !p.IsRemoved);
+            modelBuilder.Entity<CartItem>().HasQueryFilter(p => !p.IsRemoved);
         }
     }
 }

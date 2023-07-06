@@ -1,4 +1,5 @@
-﻿using Amir_Store.Domain.Entities.HomePage;
+﻿using Amir_Store.Domain.Entities.Carts;
+using Amir_Store.Domain.Entities.HomePage;
 using Amir_Store.Domain.Entities.Products;
 using Amir_Store.Domain.Entities.Users;
 using Microsoft.EntityFrameworkCore;
@@ -21,6 +22,10 @@ namespace Amir_Store.Application.Interfaces.Contexts
         DbSet<ProductImage> ProductImages { get; set; }
         DbSet<ProductFeature> ProductFeatures { get; set; }
         DbSet<Slider> Sliders { get; set; }
+        DbSet<HomePageImage> HomePageImages { get; set; }
+        DbSet<Cart> Carts { get; set; }
+        DbSet<CartItem> CartItems { get; set; }
+
 
         int SaveChanges();
         int SaveChanges(bool acceptAllChangesOnSuccess);
