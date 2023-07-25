@@ -1,0 +1,1 @@
+- Use reflector for apply has query filter in Database context

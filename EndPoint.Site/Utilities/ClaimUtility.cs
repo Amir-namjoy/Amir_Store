@@ -8,11 +8,11 @@ namespace EndPoint.Site.Utilities
 {
     public static class ClaimUtility
     {
-        public static long? GetUserId(ClaimsPrincipal User)
+        public static long? GetUserId(ClaimsPrincipal user)
         {
             try
             {
-                var claimsIdentity = User.Identity as ClaimsIdentity;
+                var claimsIdentity = user.Identity as ClaimsIdentity;
 
                 if (claimsIdentity.FindFirst(ClaimTypes.NameIdentifier) != null)
                 {

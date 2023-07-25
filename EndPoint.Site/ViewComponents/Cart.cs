@@ -7,11 +7,11 @@ namespace EndPoint.Site.ViewComponents
     public class Cart:ViewComponent
     {
         private readonly ICartServices _cartServices;
-        private readonly CookiesManeger _cookiesManeger;
+        private readonly CookiesManager _cookiesManeger;
         public Cart(ICartServices cartServices)
         {
             _cartServices = cartServices;
-            _cookiesManeger = new CookiesManeger();
+            _cookiesManeger = new CookiesManager();
         }
 
         public IViewComponentResult Invoke()

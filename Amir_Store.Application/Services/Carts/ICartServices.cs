@@ -75,6 +75,18 @@ namespace Amir_Store.Application.Services.Carts
                 .Where(p => p.BrowserId == BrowserId && p.Finished == false)
                 .OrderByDescending(p => p.Id)
                 .FirstOrDefault();
+            if (cart == null)
+            {
+                return new ResultDto<CartDto>()
+                {
+                    Data = new CartDto()
+                    {
+                        CartItems = new List<CartItemDto>(),
+                    },
+                    IsSuccess = false,
+                    Message = "سبد خرید خالی است",
+                };
+            }
 
             if(UserId != null)
             {
@@ -88,6 +100,7 @@ namespace Amir_Store.Application.Services.Carts
                 {
                     ProductCount = cart.CartItems.Count,
                     SumAmount = cart.CartItems.Sum(p => p.Price * p.Count),
+                    CartId = cart.Id,
                     CartItems = (List<CartItemDto>)cart.CartItems.Select(p => new CartItemDto
                     {
                         Count = p.Count,
@@ -147,6 +160,7 @@ namespace Amir_Store.Application.Services.Carts
 
     public class CartDto
     {
+        public long CartId { get; set; }
         public int ProductCount { get; set; }
         public int SumAmount { get; set; }
         public List<CartItemDto> CartItems { get; set; }

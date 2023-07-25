@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Amir_Store.Domain.Entities.Orders;
 
 namespace Amir_Store.Domain.Entities.Users
 {
@@ -15,6 +16,6 @@ namespace Amir_Store.Domain.Entities.Users
         public string Password { get; set; }
         public bool IsActive { get; set; }
         public ICollection<UserInRole> UserInRoles { get; set; }
-        
+        public virtual ICollection<Order> Orders { get; set; }
     }
 }

@@ -4,14 +4,16 @@ using Amir_Store.Persistence.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Amir_Store.Persistence.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    partial class DataBaseContextModelSnapshot : ModelSnapshot
+    [Migration("20230708084851_RequestPay")]
+    partial class RequestPay
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -207,86 +209,6 @@ namespace Amir_Store.Persistence.Migrations
                     b.ToTable("Sliders");
                 });
 
-            modelBuilder.Entity("Amir_Store.Domain.Entities.Orders.Order", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Address")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("InsertTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsRemoved")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("OrderState")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("RemoveTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long>("RequestPayId")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("UpdateTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long>("UserId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("RequestPayId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Orders");
-                });
-
-            modelBuilder.Entity("Amir_Store.Domain.Entities.Orders.OrderDetail", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("Count")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("InsertTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsRemoved")
-                        .HasColumnType("bit");
-
-                    b.Property<long>("OrderId")
-                        .HasColumnType("bigint");
-
-                    b.Property<int>("Price")
-                        .HasColumnType("int");
-
-                    b.Property<long>("ProductId")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime?>("RemoveTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("UpdateTime")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("OrderId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("OrderDetails");
-                });
-
             modelBuilder.Entity("Amir_Store.Domain.Entities.Products.Category", b =>
                 {
                     b.Property<long>("Id")
@@ -466,21 +388,21 @@ namespace Amir_Store.Persistence.Migrations
                         new
                         {
                             Id = 1L,
-                            InsertTime = new DateTime(2023, 7, 25, 8, 58, 42, 814, DateTimeKind.Local).AddTicks(1087),
+                            InsertTime = new DateTime(2023, 7, 8, 12, 18, 51, 477, DateTimeKind.Local).AddTicks(7117),
                             IsRemoved = false,
                             Name = "Admin"
                         },
                         new
                         {
                             Id = 2L,
-                            InsertTime = new DateTime(2023, 7, 25, 8, 58, 42, 815, DateTimeKind.Local).AddTicks(2260),
+                            InsertTime = new DateTime(2023, 7, 8, 12, 18, 51, 479, DateTimeKind.Local).AddTicks(7160),
                             IsRemoved = false,
                             Name = "Operator"
                         },
                         new
                         {
                             Id = 3L,
-                            InsertTime = new DateTime(2023, 7, 25, 8, 58, 42, 815, DateTimeKind.Local).AddTicks(2342),
+                            InsertTime = new DateTime(2023, 7, 8, 12, 18, 51, 479, DateTimeKind.Local).AddTicks(7236),
                             IsRemoved = false,
                             Name = "Customer"
                         });
@@ -599,44 +521,6 @@ namespace Amir_Store.Persistence.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Amir_Store.Domain.Entities.Orders.Order", b =>
-                {
-                    b.HasOne("Amir_Store.Domain.Entities.Finance.RequestPay", "RequestPay")
-                        .WithMany("Orders")
-                        .HasForeignKey("RequestPayId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.HasOne("Amir_Store.Domain.Entities.Users.User", "User")
-                        .WithMany("Orders")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
-                    b.Navigation("RequestPay");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Amir_Store.Domain.Entities.Orders.OrderDetail", b =>
-                {
-                    b.HasOne("Amir_Store.Domain.Entities.Orders.Order", "Order")
-                        .WithMany()
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Amir_Store.Domain.Entities.Products.Product", "Product")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Order");
-
-                    b.Navigation("Product");
-                });
-
             modelBuilder.Entity("Amir_Store.Domain.Entities.Products.Category", b =>
                 {
                     b.HasOne("Amir_Store.Domain.Entities.Products.Category", "ParentCategory")
@@ -703,11 +587,6 @@ namespace Amir_Store.Persistence.Migrations
                     b.Navigation("CartItems");
                 });
 
-            modelBuilder.Entity("Amir_Store.Domain.Entities.Finance.RequestPay", b =>
-                {
-                    b.Navigation("Orders");
-                });
-
             modelBuilder.Entity("Amir_Store.Domain.Entities.Products.Category", b =>
                 {
                     b.Navigation("SubCategories");
@@ -727,8 +606,6 @@ namespace Amir_Store.Persistence.Migrations
 
             modelBuilder.Entity("Amir_Store.Domain.Entities.Users.User", b =>
                 {
-                    b.Navigation("Orders");
-
                     b.Navigation("UserInRoles");
                 });
 #pragma warning restore 612, 618

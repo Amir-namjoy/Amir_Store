@@ -8,8 +8,8 @@ namespace Amir_Store.Common.Roles
 {
     public class UserRoles
     {
-        public string Admin = "Admin";
-        public string Operator = "Operator";
-        public string Customer = "Customer";
+        public const string Admin = "Admin";
+        public const string Operator = "Operator";
+        public const string Customer = "Customer";
     }
 }

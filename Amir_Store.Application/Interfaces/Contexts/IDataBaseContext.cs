@@ -1,5 +1,7 @@
 ﻿using Amir_Store.Domain.Entities.Carts;
+using Amir_Store.Domain.Entities.Finance;
 using Amir_Store.Domain.Entities.HomePage;
+using Amir_Store.Domain.Entities.Orders;
 using Amir_Store.Domain.Entities.Products;
 using Amir_Store.Domain.Entities.Users;
 using Microsoft.EntityFrameworkCore;
@@ -25,7 +27,11 @@ namespace Amir_Store.Application.Interfaces.Contexts
         DbSet<HomePageImage> HomePageImages { get; set; }
         DbSet<Cart> Carts { get; set; }
         DbSet<CartItem> CartItems { get; set; }
+        DbSet<RequestPay> RequestPays { get; set; }
+        DbSet<Order> Orders { get; set; }
+        DbSet<OrderDetail> OrderDetails { get; set; }
 
+        
 
         int SaveChanges();
         int SaveChanges(bool acceptAllChangesOnSuccess);

@@ -5,13 +5,19 @@ using Amir_Store.Application.Services.Common.Queries.GetCategory;
 using Amir_Store.Application.Services.Common.Queries.GetHomePageImages;
 using Amir_Store.Application.Services.Common.Queries.GetMenuItem;
 using Amir_Store.Application.Services.Common.Queries.GetSliders;
+using Amir_Store.Application.Services.Finances.Commands.AddRequestPay;
+using Amir_Store.Application.Services.Finances.Queries.GetRequestPayService;
 using Amir_Store.Application.Services.HomePage.AddHomePageImages;
 using Amir_Store.Application.Services.HomePage.AddNewSlider;
+using Amir_Store.Application.Services.Orders.Commands.AddNewOrder;
+using Amir_Store.Application.Services.Orders.Queries.GetUserOrders;
 using Amir_Store.Application.Services.Products.FacadePatterns;
 using Amir_Store.Application.Services.Users.Commands.RegisterUser;
 using Amir_Store.Application.Services.Users.Commands.UserLogin;
 using Amir_Store.Application.Services.Users.FacadePatterns;
+using Amir_Store.Common.Roles;
 using Amir_Store.Persistence.Contexts;
+using EndPoint.Site.Utilities;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -36,6 +42,13 @@ namespace EndPoint.Site
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy(UserRoles.Admin, policy => policy.RequireRole(UserRoles.Admin));
+                options.AddPolicy(UserRoles.Customer, policy => policy.RequireRole(UserRoles.Customer));
+                options.AddPolicy(UserRoles.Operator, policy => policy.RequireRole(UserRoles.Operator));
+            });
+
             services.AddAuthentication(options =>
             {
                 options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
@@ -43,7 +56,7 @@ namespace EndPoint.Site
                 options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
             }).AddCookie(options =>
             {
-                options.LoginPath = new PathString("/");
+                options.LoginPath = new PathString("/Authentication/Signin");
                 options.ExpireTimeSpan = TimeSpan.FromMinutes(5.0);
             });
 
@@ -69,6 +82,12 @@ namespace EndPoint.Site
             services.AddScoped<IAddHomePageImagesService, AddHomePageImagesService>();
             services.AddScoped<IGetHomePageImagesService, GetHomePageImagesService>();
             services.AddScoped<ICartServices, CartService>();
+            services.AddScoped<IAddRequestPayService, AddRequestPayService>();
+            services.AddScoped<IGetRequestPayService, GetRequestPayService>();
+            services.AddScoped<IAddNewOrderService, AddNewOrderService>();
+            services.AddScoped<IGetUserOrdersService, GetUserOrdersService>();
+            
+            services.AddScoped<CookiesManager>();
 
             string ConnectionString = @"Data Source=.; Initial Catalog=Amir_StoreDB; Integrated Security=True;";
             services.AddEntityFrameworkSqlServer().AddDbContext<DataBaseContext>(option => option.UseSqlServer(ConnectionString));
@@ -93,9 +112,10 @@ namespace EndPoint.Site
             app.UseStaticFiles();
 
             app.UseRouting();
-
-            app.UseAuthorization();
+            
             app.UseAuthentication();
+            app.UseAuthorization();
+            
 
             app.UseEndpoints(endpoints =>
             {

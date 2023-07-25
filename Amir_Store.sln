@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Doc", "Doc", "{B9883763-BA5F-4A7F-9EF3-BFFA7DB3A306}"
+	ProjectSection(SolutionItems) = preProject
+		Notes.txt = Notes.txt
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Src", "Src", "{C5DB0995-52EF-4325-A87F-40A4F29B6FCF}"
 EndProject
@@ -17,17 +20,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{81BE4BED-8C20-49BF-8913-A207DA7ED918}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Amir_Store.Domain", "Amir_Store.Domain\Amir_Store.Domain.csproj", "{604F8EF6-70C5-4BB1-90FA-EADEB7DC5E69}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Amir_Store.Domain", "Amir_Store.Domain\Amir_Store.Domain.csproj", "{604F8EF6-70C5-4BB1-90FA-EADEB7DC5E69}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Amir_Store.Application", "Amir_Store.Application\Amir_Store.Application.csproj", "{8FFEA21B-9D34-467F-9E62-B1F96B433CFC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Amir_Store.Application", "Amir_Store.Application\Amir_Store.Application.csproj", "{8FFEA21B-9D34-467F-9E62-B1F96B433CFC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Amir_Store.Infrastructure", "Amir_Store.Infrastructure\Amir_Store.Infrastructure.csproj", "{34846CCA-C4FA-4434-B68B-9DEF1F64C945}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Amir_Store.Infrastructure", "Amir_Store.Infrastructure\Amir_Store.Infrastructure.csproj", "{34846CCA-C4FA-4434-B68B-9DEF1F64C945}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Amir_Store.Persistence", "Amir_Store.Persistence\Amir_Store.Persistence.csproj", "{B97BC082-C4C5-447F-8FEE-F6BE7410B796}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Amir_Store.Persistence", "Amir_Store.Persistence\Amir_Store.Persistence.csproj", "{B97BC082-C4C5-447F-8FEE-F6BE7410B796}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Amir_Store.Common", "Amir_Store.Common\Amir_Store.Common.csproj", "{6F338D28-01B8-483F-B246-8A9A328B4D9E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Amir_Store.Common", "Amir_Store.Common\Amir_Store.Common.csproj", "{6F338D28-01B8-483F-B246-8A9A328B4D9E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EndPoint.Site", "EndPoint.Site\EndPoint.Site.csproj", "{B81E87EF-43E5-4426-AB54-6ED25F5CB7D5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EndPoint.Site", "EndPoint.Site\EndPoint.Site.csproj", "{B81E87EF-43E5-4426-AB54-6ED25F5CB7D5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
