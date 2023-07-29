@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using Amir_Store.Application.Services.Orders.Commands.AddNewOrder;
 using ZarinPal.Class;
 using ZarinPal.Interface;
+using Microsoft.CodeAnalysis;
 
 namespace EndPoint.Site.Controllers
 {
@@ -49,7 +50,7 @@ namespace EndPoint.Site.Controllers
                 // ارسال به درگاه پرداخت
                 var result = await _payment.Request(new DtoRequest()
                 {
-                    Mobile = "09121112222",
+                    Mobile = "0919190335",
                     CallbackUrl = $"https://localhost:44380/Pay/Verify?guid={requestPay.Data.guid}",
                     Description = "پرداخت فاکتور شماره :" + requestPay.Data.RequestPayId,
                     Email = requestPay.Data.Email,
@@ -84,7 +85,10 @@ namespace EndPoint.Site.Controllers
                     {
                         CartId = cart.Data.CartId,
                         UserId = UserId.Value,
-                        RequestPayId = requestPay.Data.Id
+                        RequestPayId = requestPay.Data.Id,
+                        Authority = authority,
+                        RefId = verification.RefId,
+
                     });
 
                     //Redirect to orders

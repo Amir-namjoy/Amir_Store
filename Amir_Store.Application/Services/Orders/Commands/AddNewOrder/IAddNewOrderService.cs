@@ -32,7 +32,8 @@ namespace Amir_Store.Application.Services.Orders.Commands.AddNewOrder
 
             requestPay.IsPay = true;
             requestPay.PayDate = DateTime.Now;
-
+            requestPay.Authority = request.Authority;
+            requestPay.RefId = request.RefId;
             cart.Finished = true;
 
             Order order = new Order()
@@ -71,6 +72,8 @@ namespace Amir_Store.Application.Services.Orders.Commands.AddNewOrder
         public long CartId { get; set; }
         public long RequestPayId { get; set; }
         public long UserId { get; set; }
+        public string Authority { get; set; }
+        public long RefId { get; set; } = 0;
 
     }
 }

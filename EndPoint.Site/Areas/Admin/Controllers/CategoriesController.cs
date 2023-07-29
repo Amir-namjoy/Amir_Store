@@ -1,9 +1,11 @@
 ﻿using Amir_Store.Application.Interfaces.FacadePatterns;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EndPoint.Site.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin,Operator")]
     public class CategoriesController : Controller
     {
         private readonly IProductFacade _productFacade;

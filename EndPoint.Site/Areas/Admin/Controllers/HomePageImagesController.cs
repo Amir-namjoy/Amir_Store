@@ -1,11 +1,13 @@
 ﻿using Amir_Store.Application.Services.HomePage.AddHomePageImages;
 using Amir_Store.Domain.Entities.HomePage;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EndPoint.Site.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin,Operator")]
     public class HomePageImagesController : Controller
     {
         private readonly IAddHomePageImagesService _addHomePageImagesService;

@@ -1,4 +1,5 @@
-﻿@{
+﻿@using EndPoint.Site.Utilities
+@{
     Layout = null;
 }
 
@@ -51,16 +52,32 @@
                             <a href="#"><i class="icon-home"></i><span data-i18n="" class="menu-title">داشبورد</span><span class="tag badge badge-pill badge-danger mt-1">2</span></a>
                         </li>
 
-
+                        @if (ClaimUtility.GetRolse(User).Where(p => p == "Admin").Count() >= 1)
+                        {
+                            <li class="has-sub nav-item">
+                                <a href="#"><i class="icon-users"></i><span data-i18n="" class="menu-title">مدیریت کاربران</span></a>
+                                <ul class="menu-content">
+                                    <li>
+                                        <a href="~/admin/users/index" class="menu-item">لیست کاربران</a>
+                                    </li>
+                                    <li>
+                                        <a href="~/admin/users/Create" class="menu-item">ثبت نام کاربر جدید *</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
 
                         <li class="has-sub nav-item">
-                            <a href="#"><i class="icon-users"></i><span data-i18n="" class="menu-title">مدیریت کاربران</span></a>
+                            <a href="#"><i class="icon-users"></i><span data-i18n="" class="menu-title">مدیریت سفارشات</span></a>
                             <ul class="menu-content">
                                 <li>
-                                    <a href="~/admin/users/index" class="menu-item">لیست کاربران</a>
+                                    <a href="~/admin/orders/index?orderState=Processing" class="menu-item">در حال پردازش</a>
                                 </li>
                                 <li>
-                                    <a href="~/admin/users/Create" class="menu-item">ثبت نام کاربر جدید *</a>
+                                    <a href="~/admin/orders/index?orderState=Delivered" class="menu-item">تحویل شده ها </a>
+                                </li>
+                                <li>
+                                    <a href="~/admin/orders/index?orderState=Canceled" class="menu-item"> لغو شده</a>
                                 </li>
                             </ul>
                         </li>

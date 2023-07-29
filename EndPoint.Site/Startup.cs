@@ -6,10 +6,12 @@ using Amir_Store.Application.Services.Common.Queries.GetHomePageImages;
 using Amir_Store.Application.Services.Common.Queries.GetMenuItem;
 using Amir_Store.Application.Services.Common.Queries.GetSliders;
 using Amir_Store.Application.Services.Finances.Commands.AddRequestPay;
+using Amir_Store.Application.Services.Finances.Queries.GetRequestPayForAdmin;
 using Amir_Store.Application.Services.Finances.Queries.GetRequestPayService;
 using Amir_Store.Application.Services.HomePage.AddHomePageImages;
 using Amir_Store.Application.Services.HomePage.AddNewSlider;
 using Amir_Store.Application.Services.Orders.Commands.AddNewOrder;
+using Amir_Store.Application.Services.Orders.Queries.GetOrdersForAdmin;
 using Amir_Store.Application.Services.Orders.Queries.GetUserOrders;
 using Amir_Store.Application.Services.Products.FacadePatterns;
 using Amir_Store.Application.Services.Users.Commands.RegisterUser;
@@ -58,6 +60,7 @@ namespace EndPoint.Site
             {
                 options.LoginPath = new PathString("/Authentication/Signin");
                 options.ExpireTimeSpan = TimeSpan.FromMinutes(5.0);
+                options.AccessDeniedPath = new PathString("/Authentication/Signin");
             });
 
             services.AddScoped<IDataBaseContext, DataBaseContext>();
@@ -86,7 +89,8 @@ namespace EndPoint.Site
             services.AddScoped<IGetRequestPayService, GetRequestPayService>();
             services.AddScoped<IAddNewOrderService, AddNewOrderService>();
             services.AddScoped<IGetUserOrdersService, GetUserOrdersService>();
-            
+            services.AddScoped<IGetOrdersForAdmin, GetOrdersForAdmin>();
+            services.AddScoped<IGetRequestPayForAdminService, GetRequestPayForAdminService>();
             services.AddScoped<CookiesManager>();
 
             string ConnectionString = @"Data Source=.; Initial Catalog=Amir_StoreDB; Integrated Security=True;";

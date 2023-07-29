@@ -9,10 +9,12 @@ using Amir_Store.Application.Services.Users.Commands.UserStatusChange;
 using Amir_Store.Application.Services.Users.Commands.EditUser;
 using Amir_Store.Application.Interfaces.FacadePatterns;
 using Amir_Store.Application.Services.Users.FacadePatterns;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EndPoint.Site.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles ="Admin")]
     public class UsersController : Controller
     {
         //private readonly IGetUsersService _getUsersService;

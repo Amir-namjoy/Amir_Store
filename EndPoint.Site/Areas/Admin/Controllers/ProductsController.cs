@@ -1,5 +1,6 @@
 ﻿using Amir_Store.Application.Interfaces.FacadePatterns;
 using Amir_Store.Application.Services.Products.Commands.AddNewProduct;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -8,6 +9,7 @@ using System.Collections.Generic;
 namespace EndPoint.Site.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin,Operator")]
     public class ProductsController : Controller
     {
         private readonly IProductFacade  _productFacade;
