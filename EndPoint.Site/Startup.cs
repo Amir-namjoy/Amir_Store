@@ -93,7 +93,7 @@ namespace EndPoint.Site
             services.AddScoped<IGetRequestPayForAdminService, GetRequestPayForAdminService>();
             services.AddScoped<CookiesManager>();
 
-            string ConnectionString = @"Data Source=.; Initial Catalog=Amir_StoreDB; Integrated Security=True;";
+            string ConnectionString = @"Data Source=.; Initial Catalog=Amir_StoreDB; Integrated Security=True;TrustServerCertificate=True";
             services.AddEntityFrameworkSqlServer().AddDbContext<DataBaseContext>(option => option.UseSqlServer(ConnectionString));
             //services.AddEntityFrameworkSqlServer().AddDbContext<DataBaseContext>(option => option.UseSqlServer(Configuration.GetConnectionString());
             services.AddControllersWithViews();
